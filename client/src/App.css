@@ -1,0 +1,13 @@
+.App {
+  text-align: center;
+}
+
+.Container {
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+}
+
+button {
+  font-size: 30px;
+}
