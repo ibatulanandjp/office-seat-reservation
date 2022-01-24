@@ -7,7 +7,12 @@ export const ReservationTable = ({ reservations }) => {
         <td>{reservation.user_id}</td>
         <td>{reservation.first_name}</td>
         <td>{reservation.last_name}</td>
-        <td>{new Date(reservation.date_reservation).toLocaleDateString('ja-JP', 'yyyy-mm-dd')}</td>
+        <td>
+          {new Date(reservation.date_reservation).toLocaleDateString(
+            "ja-JP",
+            "yyyy-mm-dd"
+          )}
+        </td>
         <td>{reservation.cancelled}</td>
       </tr>
     );
@@ -19,8 +24,8 @@ export const ReservationTable = ({ reservations }) => {
 
   return (
     <div className="container">
-      <table className="table table-bordered">
-        <thead>
+      <table className="table table-sm bg-white table-borderless table-hover table-striped table-responsive">
+        <thead className="table-dark">
           <tr>
             <th>User Id</th>
             <th>First Name</th>
