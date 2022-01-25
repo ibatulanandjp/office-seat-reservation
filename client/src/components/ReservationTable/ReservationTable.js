@@ -8,10 +8,9 @@ export const ReservationTable = ({ reservations }) => {
         <td>{reservation.first_name}</td>
         <td>{reservation.last_name}</td>
         <td>
-          {new Date(reservation.date_reservation).toLocaleDateString(
-            "ja-JP",
-            "yyyy-mm-dd"
-          )}
+          {new Date(reservation.date_reservation)
+            .toLocaleDateString("ja-JP", "yyyy/mm/dd")
+            .replaceAll("/", "-")}
         </td>
         <td>{reservation.cancelled}</td>
       </tr>

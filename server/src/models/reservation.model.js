@@ -29,6 +29,15 @@ Reservation.getReservationListByDate = (date, result) => {
   });
 };
 
+// Get active reservations count for the date
+Reservation.getActiveReservationCountByDate = (date, result) => {
+  const sqlSelectQuery = `SELECT COUNT(*) AS active_reservation_count from reservation WHERE date_reservation BETWEEN '${date} 00:00:00' AND '${date} 23:59:59' AND cancelled=0;`;
+  db.query(sqlSelectQuery, (err, rows, fields) => {
+    if (err) throw err;
+    result(null, rows);
+  });
+};
+
 // Create Reservation
 Reservation.create = (reservation, result) => {
   const sqlInsertQuery =

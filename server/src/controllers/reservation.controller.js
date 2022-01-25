@@ -18,6 +18,17 @@ exports.getReservationListByDate = (req, res) => {
   });
 };
 
+// Get active reservations count for the date
+exports.getActiveReservationCountByDate = (req, res) => {
+  Reservation.getActiveReservationCountByDate(
+    req.params.date,
+    (err, reservationCount) => {
+      if (err) res.send(err);
+      res.send(reservationCount);
+    }
+  );
+};
+
 // Create reservation
 exports.create = (req, res) => {
   const newReservation = new Reservation(req.body);

@@ -5,10 +5,9 @@ export const SeatTable = ({ seatInfo }) => {
     return (
       <tr key={seat.date_reservation}>
         <td>
-          {new Date(seat.date_reservation).toLocaleDateString(
-            "ja-JP",
-            "yyyy-mm-dd"
-          )}
+          {new Date(seat.date_reservation)
+            .toLocaleDateString("ja-JP", "yyyy-mm-dd")
+            .replaceAll("/", "-")}
         </td>
         <td>{seat.total_seat}</td>
       </tr>

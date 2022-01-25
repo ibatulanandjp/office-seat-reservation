@@ -9,6 +9,12 @@ router.get("/", reservationController.getReservationList);
 // Get reservations by date
 router.get("/:date", reservationController.getReservationListByDate);
 
+// Get active reservations count by date
+router.get(
+  "/count/:date",
+  reservationController.getActiveReservationCountByDate
+);
+
 // Create reservation
 router.post("/", reservationController.create);
 
