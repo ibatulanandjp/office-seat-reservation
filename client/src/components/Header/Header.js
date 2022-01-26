@@ -5,7 +5,9 @@ export const Header = () => {
     <React.Fragment>
       <nav className="navbar sticky-top navbar-dark bg-primary">
         <div className="container-fluid">
-          <span className="navbar-brand  h1">Admin Dashboard</span>
+          <span className="navbar-brand h1 ">
+            JTP Seat Reservation - Admin Dashboard
+          </span>
         </div>
       </nav>
     </React.Fragment>

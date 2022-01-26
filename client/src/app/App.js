@@ -70,8 +70,7 @@ function App() {
   // useEffect(() => {
   //   // getAllReservation();
   //   // getSeat();
-  //   if (!date) getSelectedDate(new Date());
-  // }, [date]);
+  // }, []);
 
   useEffect(() => {
     getReservationByDate(
@@ -100,90 +99,16 @@ function App() {
         ) : (
           <div className="container-fluid">
             <div className="row g-0">
-              {/* <div className="col bg-white border rounded p-3 card">
-                <div className="border rounded">
-                  <div className="card-header bg-primary">Select Date</div>
-                  <div className="card-body">
-                    <DatePicker
-                      selected={date}
-                      onSelect={(date) => {
-                        getSelectedDate(date);
-                      }}
-                      dateFormat={"yyyy-MM-dd"}
-                    />
-                  </div>
-                </div>
+              <div className="col bg-white border rounded card">
+                <div className="card-body"></div>
                 <br />
-                <div className="border rounded">
-                  <div className="bg-primary rounded">
-                    <div className="card-header bg-primary">Date Selected:</div>
-                    <div className="card-body bg-white">
-                      {date
-                        .toLocaleDateString("ja-JP", "yyyy-MM-dd")
-                        .replaceAll("/", "-")}
-                    </div>
-                  </div>
-                </div>
-                <br />
-                <div className="border rounded">
-                  <div className="bg-primary rounded">
-                    <div className="card-header bg-primary">
-                      Active Reservation:
-                    </div>
-                    <div className="card-body bg-white">
-                      {activeReservationCountByDate}
-                    </div>
-                  </div>
-                </div>
-              </div> */}
-              {/* <div className="col bg-white border rounded p-3 card">
-                <div className="border rounded">
-                  <div className="card-header bg-primary">
-                    Reservation List By Date:
-                    {date
-                      .toLocaleDateString("ja-JP", "yyyy-MM-dd")
-                      .replaceAll("/", "-")}
-                  </div>
-                  <div className="card-body bg-white">
-                    <ReservationTable reservations={reservationsByDate} />
-                  </div>
-                </div>
-              </div> */}
-              {/* <div className="col bg-white border rounded p-3 card">
-                <div className="border rounded">
-                  <div className="card-header bg-primary">
-                    Seat Information By Date:
-                    {date
-                      .toLocaleDateString("ja-JP", "yyyy-MM-dd")
-                      .replaceAll("/", "-")}
-                  </div>
-                  <div className="card-body bg-white">
-                    <SeatTable seatInfo={seatInfoByDate} />
-                  </div>
-                </div>
-              </div> */}
-            </div>
-            <div className="row g-0">
-              <div className="col bg-white border rounded p-3 card">
-                {/* <div className="border rounded"> */}
-                {/* <div className="card-header bg-primary">Select Date</div> */}
+              </div>
+              <div className="col bg-white border rounded card">
                 <div className="card-body">
                   <div className="row g-0">
-                    {/* <div className="col bg-white border rounded p-3 card">
-                        <DatePicker
-                          showMonthDropdown
-                          showYearDropdown
-                          dropdownMode="select"
-                          selected={date}
-                          onSelect={(date) => {
-                            getSelectedDate(date);
-                          }}
-                          dateFormat={"yyyy-MM-dd"}
-                        />
-                      </div> */}
                     <div className="col bg-white border rounded p-3 card">
-                      <div className="card-header bg-primary">
-                        <h5>Select Date</h5>
+                      <div className="card-header bg-primary text-white fw-bold">
+                        Select Date
                       </div>
                       <DayPicker
                         onDayClick={(date) => {
@@ -194,68 +119,41 @@ function App() {
                       />
                     </div>
                     <div className="col bg-white border rounded p-3 card">
-                      <div className="card-header bg-primary">
-                        <h5>Seat Availability:</h5>
+                      <div className="card-header bg-primary text-white fw-bold">
+                        Seat Availability
                       </div>
+
                       <div className="card-body bg-white">
-                        Active Reservation / Total Seat :{" "}
-                        <h5>
-                          [ {activeReservationCountByDate} / {seatInfoByDate} ]
-                        </h5>
+                        <ActiveReservationChart seatData={chartData} />
+                        <div className="row p-3">
+                          <div className="col-7 text-center">
+                            Active Reservation / Total Seat :
+                          </div>
+                          <div className="col-5 text-start fw-bold">
+                            [ {activeReservationCountByDate} / {seatInfoByDate}{" "}
+                            ]
+                          </div>
+                        </div>
                       </div>
-                      <ActiveReservationChart seatData={chartData} />
-                      {/* <ActiveReservationChart /> */}
                     </div>
                   </div>
-
-                  {/* <DayPicker
-                      onDayClick={(date) => {
-                        getSelectedDate(date);
-                      }}
-                      selectedDays={date}
-                      // disabledDays={{ daysOfWeek: [0, 6] }}
-                    /> */}
+                  <div className="row g-0">
+                    <div className="col bg-white border rounded p-3 card">
+                      <div className="border rounded">
+                        <h5 className="card-header bg-primary">
+                          Reservation List By Date:
+                          {date
+                            .toLocaleDateString("ja-JP", "yyyy-MM-dd")
+                            .replaceAll("/", "-")}
+                        </h5>
+                        <div className="card-body bg-white">
+                          <ReservationTable reservations={reservationsByDate} />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                {/* </div> */}
                 <br />
-
-                {/* <div className="border rounded">
-                  <div className="bg-primary rounded">
-                    <div className="card-header bg-primary">Date Selected:</div>
-                    <div className="card-body bg-white">
-                      {date
-                        .toLocaleDateString("ja-JP", "yyyy-MM-dd")
-                        .replaceAll("/", "-")}
-                    </div>
-                  </div>
-                </div>
-                <br /> */}
-
-                {/* <div className="border rounded">
-                  <div className="bg-primary rounded">
-                    <div className="card-header bg-primary">
-                      Active Reservation:
-                    </div>
-                    <div className="card-body bg-white">
-                      {activeReservationCountByDate} / {seatInfoByDate}
-                    </div>
-                  </div>
-                </div> */}
-              </div>
-              <div className="col bg-white border rounded p-3 card">
-                <div className="border rounded">
-                  <div className="card-header bg-primary">
-                    <h5>
-                      Reservation List By Date:
-                      {date
-                        .toLocaleDateString("ja-JP", "yyyy-MM-dd")
-                        .replaceAll("/", "-")}
-                    </h5>
-                  </div>
-                  <div className="card-body bg-white">
-                    <ReservationTable reservations={reservationsByDate} />
-                  </div>
-                </div>
               </div>
             </div>
           </div>
