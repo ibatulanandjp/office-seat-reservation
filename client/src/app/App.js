@@ -12,10 +12,13 @@ import { getActiveReservationCountByDate } from "../services/ActiveReservationCo
 // import { getSeatInfo } from "../services/SeatInfoService";
 import { getSeatInfoByDate } from "../services/SeatInfoByDateService";
 
+import { getWeekDays, getWeekRange } from "../services/WeekDaysService";
+
 // Components
 import { Header } from "../components/Header/Header";
 import { ReservationTable } from "../components/ReservationTable/ReservationTable";
 import { ActiveReservationChart } from "../components/ActiveReservationChart/ActiveReservationChart";
+import { WeekDaysTable } from "../components/WeekDaysTable/WeekDaysTable";
 // import { SeatTable } from "../components/SeatTable/SeatTable";
 
 function App() {
@@ -29,6 +32,8 @@ function App() {
 
   const [date, setDate] = useState(new Date());
   const [chartData, setChartData] = useState();
+
+  const [weekDates, setWeekDates] = useState([]);
 
   // ================================
   // const getAllReservation = async () => {
@@ -66,6 +71,13 @@ function App() {
     setChartData([occupiedSeat, totalSeat - occupiedSeat]);
   };
 
+  const getWeekDates = (date) => {
+    // console.log("date for week: " + date);
+    const weekDates = getWeekDays(getWeekRange(date).from);
+    // console.log("week dates: " + weekDates);
+    setWeekDates(weekDates);
+  };
+
   // ================================
   // useEffect(() => {
   //   // getAllReservation();
@@ -82,6 +94,7 @@ function App() {
     getActiveReservationCount(
       date.toLocaleDateString("ja-JP", "yyyy-MM-dd").replaceAll("/", "-")
     );
+    getWeekDates(date);
   }, [date]);
 
   useEffect(() => {
@@ -99,8 +112,15 @@ function App() {
         ) : (
           <div className="container-fluid">
             <div className="row g-0">
-              <div className="col bg-white border rounded card">
-                <div className="card-body"></div>
+              <div className="col bg-white border rounded p-4 card">
+                <div className="card-header bg-primary text-white fw-bold">
+                  Seat Availability List
+                </div>
+                <div className="card-body">
+                  <WeekDaysTable
+                    weekDays={weekDates}
+                  />
+                </div>
                 <br />
               </div>
               <div className="col bg-white border rounded card">
@@ -140,12 +160,16 @@ function App() {
                   <div className="row g-0">
                     <div className="col bg-white border rounded p-3 card">
                       <div className="border rounded">
-                        <h5 className="card-header bg-primary">
-                          Reservation List By Date:
-                          {date
-                            .toLocaleDateString("ja-JP", "yyyy-MM-dd")
-                            .replaceAll("/", "-")}
-                        </h5>
+                        <div className="card-header bg-primary text-white fw-bold">
+                          <div className="row">
+                            <div className="col">Reservation List By Date </div>
+                            <div className="col">
+                              {date
+                                .toLocaleDateString("ja-JP", "yyyy-MM-dd")
+                                .replaceAll("/", "-")}
+                            </div>
+                          </div>
+                        </div>
                         <div className="card-body bg-white">
                           <ReservationTable reservations={reservationsByDate} />
                         </div>

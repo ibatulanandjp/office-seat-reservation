@@ -24,7 +24,7 @@ export const ReservationTable = ({ reservations }) => {
   return (
     <div className="container">
       <table className="table table-sm bg-white table-borderless table-hover table-striped table-responsive">
-        <thead className="table-dark">
+        <thead className="table-primary">
           <tr>
             <th>User Id</th>
             <th>First Name</th>
